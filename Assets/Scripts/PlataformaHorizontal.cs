@@ -32,6 +32,7 @@ public class PlataformaHorizontal : Plataforma
     void Update()
     {
         Moverse();
+        DelimitadorMovimiento();
     }
 
 }

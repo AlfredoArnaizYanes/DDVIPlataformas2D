@@ -18,4 +18,6 @@ public abstract class Plataforma : MonoBehaviour
     }
 
     protected abstract void Moverse();
+
+   
 }

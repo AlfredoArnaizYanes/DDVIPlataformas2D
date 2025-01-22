@@ -24,7 +24,7 @@ public class PlataformaVertical : Plataforma
 
     private void OnTriggerEnter2D(Collider2D elOtro)
     {
-        if (elOtro.gameObject.CompareTag("PlayerHitBox"))
+        if (elOtro.gameObject.CompareTag("DeteccionPlayer"))
         {
             velocidadPlataforma *= -1;
         }
@@ -40,6 +40,7 @@ public class PlataformaVertical : Plataforma
     void Update()
     {
         Moverse();
+        DelimitadorMovimiento();
     }
 
 }

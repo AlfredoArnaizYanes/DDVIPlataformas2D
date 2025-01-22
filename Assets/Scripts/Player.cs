@@ -1,24 +1,45 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : Personaje
 {
+    [Header("Sistema de movimiento")]
     [SerializeField] private float fuerzaSalto;
+    [SerializeField] private Transform piesPlayer;
+    [SerializeField] private float distanciaDeteccionSuelo;
+    [SerializeField] private LayerMask loQueEsSaltable;
+
+    [Header("Daño por caida")]
     [SerializeField] private float velocidadMaxCaida;
     [SerializeField] private float danhoPorCaida;
+
+    [Header("Sistema de ataque")]
+    [SerializeField] private Transform puntoAtaque;
+    [SerializeField] private float radioAtaque;
+    [SerializeField] private LayerMask loQueEsDanhable;
+
+    [Header("Barra de Vida")]
+    [SerializeField] private Image barraVida;
+    [SerializeField] private Image barraVidaColor;
+
     private Rigidbody2D rb;
     private float inputH;
     private Animator anim;
-    private SistemaVidas sistemaVidasPlayer;
     private float velocidadAntesSuelo;
+    private float vidaMaxima;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb= GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        sistemaVidasPlayer = GetComponent<SistemaVidas>();
+        vidaMaxima = vida;
+        barraVida.gameObject.SetActive(true);
+        Debug.Log("VidaMaxima es:" + vidaMaxima);
     }
 
     // Update is called once per frame
@@ -31,6 +52,19 @@ public class Player : Personaje
         LanzarAtaque();
 
         DanhoCaida();
+
+        EstoyMuerto();
+
+        ActualizarBarraVida();        
+
+        
+        barraVidaColor.fillAmount = vida / vidaMaxima;
+    }
+    
+    private void ActualizarBarraVida()
+    {
+        barraVidaColor.fillAmount = vida / vidaMaxima;
+        barraVidaColor.color = new Color((1 - (vida / vidaMaxima)), vida / vidaMaxima, 0, 1);
     }
 
     private void DanhoCaida()
@@ -41,9 +75,9 @@ public class Player : Personaje
         }
         else
         {
-            if(velocidadAntesSuelo < velocidadMaxCaida)
+            if (velocidadAntesSuelo < velocidadMaxCaida)
             {
-                sistemaVidasPlayer.RecibirDanho(danhoPorCaida);
+                vida -= danhoPorCaida;
             }
             velocidadAntesSuelo = 0;
         }
@@ -51,10 +85,10 @@ public class Player : Personaje
 
     private bool EstoyEnSuelo()
     {
-        return true;
-        //Debug.DrawRay(piesPlayer.position, Vector3.down, Color.blue, 0.4f);
-        //return Physics2D.Raycast(piesPlayer.position, Vector3.down, distanciaDeteccionSuelo, loQueEsSaltable);
+        Debug.DrawRay(piesPlayer.position, Vector3.down, Color.yellow, 0.1f);
+        return Physics2D.Raycast(piesPlayer.position, Vector3.down, distanciaDeteccionSuelo, loQueEsSaltable);
     }
+
 
 
     //Me pego a las plataformas cuando estoy sobre ellas
@@ -72,6 +106,8 @@ public class Player : Personaje
     }
     //FIN de Me pego a las plataformas cuando estoy sobre ellas
 
+
+    //El player ataca
     private void LanzarAtaque()
     {
         if (Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(0))
@@ -79,6 +115,26 @@ public class Player : Personaje
             anim.SetTrigger("attack");
         }
     }
+            //Se ejecuta desde evento de animacion
+    private void Ataque()
+    {
+        Collider2D[] collidersTocados = Physics2D.OverlapCircleAll(puntoAtaque.position, radioAtaque, loQueEsDanhable);
+        foreach(Collider2D item in collidersTocados)
+        {
+            Enemigo myEnemigo = item.gameObject.GetComponent<Enemigo>();
+            if (myEnemigo != null)
+            {
+                myEnemigo.Vida -= danhoCausado;
+            }
+            
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(puntoAtaque.position, radioAtaque);
+    }
+    //FIN del player ataca
     private void Movimiento()
     {
         inputH = Input.GetAxisRaw("Horizontal");
@@ -102,8 +158,8 @@ public class Player : Personaje
     }
     private void Salto()
     {
-        
-        if (Input.GetKeyDown(KeyCode.Space))
+
+        if (Input.GetKeyDown(KeyCode.Space) && EstoyEnSuelo())
         {
             rb.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
             anim.SetTrigger("jumping");
@@ -111,3 +167,4 @@ public class Player : Personaje
     }
 
 }
+
