@@ -58,7 +58,7 @@ public class Player : Personaje
         ActualizarBarraVida();        
 
         
-        barraVidaColor.fillAmount = vida / vidaMaxima;
+        //barraVidaColor.fillAmount = vida / vidaMaxima;
     }
     
     private void ActualizarBarraVida()

@@ -10,7 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6729851997409735512}
   - component: {fileID: 5789782150346982691}
-  - component: {fileID: 5523165752409142764}
+  - component: {fileID: 8349642617260335477}
+  - component: {fileID: 8507204797269998286}
+  - component: {fileID: 189742161630477328}
+  - component: {fileID: 5220330977026952379}
   - component: {fileID: -7286240595519362609}
   - component: {fileID: -7779965641672603873}
   - component: {fileID: 4948199237064952579}
@@ -90,7 +93,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5523165752409142764
+--- !u!114 &8349642617260335477
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,15 +102,53 @@ MonoBehaviour:
   m_GameObject: {fileID: 5452572395159514324}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f912065f9e7dad4da6c5aa80dd99a2b, type: 3}
+  m_Script: {fileID: 11500000, guid: f9339ee0aeeda844db770a4d1eaa0a40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   velocidadMovimiento: 0
   danhoCausado: 5
   vida: 80
-  bolaFuegoPrefab: {fileID: 7839168234901826615, guid: da6ace6e272c9db46b78209867fb5ecd, type: 3}
-  puntoSpawn: {fileID: 0}
+--- !u!114 &8507204797269998286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5452572395159514324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42d785de6f42b0e4f959db9659f8e03b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &189742161630477328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5452572395159514324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75437b976ca7f8f45a2268d8337e02a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5220330977026952379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5452572395159514324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 004f42bc60a1c604688691a0415e036b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bolaFuegoPrefab1: {fileID: 4674942356285708940, guid: da6ace6e272c9db46b78209867fb5ecd, type: 3}
+  bolaFuegoPrefab2: {fileID: 3984734876659453392, guid: a697a33337152e6438199ab2b2f8c002, type: 3}
+  puntoSpawn: {fileID: 7374526966117548201}
   tiempoAtaques: 4
+  probBolaTipo1: 0.5
 --- !u!50 &-7286240595519362609
 Rigidbody2D:
   serializedVersion: 4
