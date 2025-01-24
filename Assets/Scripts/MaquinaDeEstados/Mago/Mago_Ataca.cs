@@ -12,6 +12,7 @@ public class Mago_Ataca : Estado<Mago_Controller>
     [SerializeField] private float tiempoTeletransporte;
     [SerializeField] private float probBolaTipo1;
     [SerializeField] private Transform puntosTeletransporte;
+    [SerializeField] private int numeroPuntosTeletransporte;
     private Animator anim;
     private ObjectPool<BolaFuego1> bolasFuegoPool1;
     private ObjectPool<BolaFuego2> bolasFuegoPool2;
@@ -115,7 +116,7 @@ public class Mago_Ataca : Estado<Mago_Controller>
             indicePosicion = Random.Range(0, 3);
             while (indicePosicion == indiceActual)
             {
-                indicePosicion = Random.Range(0, 3);
+                indicePosicion = Random.Range(0, numeroPuntosTeletransporte);
             }
             indiceActual = indicePosicion;
             transform.position = listadoPuntosT[indiceActual];            
