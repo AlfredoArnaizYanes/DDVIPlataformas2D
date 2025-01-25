@@ -9,7 +9,7 @@ public class PlataformaParametrica : Plataforma
     [SerializeField] private float radio;
     [SerializeField] private float parametro;
   
-    private Rigidbody2D rb;
+    
     private float t;
 
     //[SerializeField] private Vector2 posInicial;
@@ -21,11 +21,7 @@ public class PlataformaParametrica : Plataforma
             centro.position.y + radio * Mathf.Sin(t)-Mathf.Sin(parametro*t), 0);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
+    
 
     // Update is called once per frame
     void Update()

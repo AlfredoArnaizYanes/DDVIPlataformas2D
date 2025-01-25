@@ -5,8 +5,9 @@ using UnityEngine.Pool;
 
 public class Gota : Enemigo
 {
-    //[SerializeField] private AudioClip meGolpean;
-    //private AudioSource componenteAudio;
+
+    //LAS GOTAS DE LAVA CAEN HACIA ABAJO Y SI CAEN SOBRE EL PLAYER LO DAÑAN, SI TROPIEZAN CON OTRA COSA SE DESTRUYEN
+    
     private float timer;
     private ObjectPool<Gota> myGotasPool;
     
@@ -15,11 +16,10 @@ public class Gota : Enemigo
     
     
     // Start is called before the first frame update
-    void Start()
-    {
-        //componenteAudio = GetComponent<AudioSource>();
-        
-    }
+    //void Start()
+    //{
+              
+    //}
 
    
 

@@ -30,7 +30,7 @@ public class BolaFuego1 : Enemigo
             timer = 0;
             myBolasFuegoPool1.Release(this);
         }
-        //Destroy(this.gameObject, 6f);
+        
     }
 
     public void impulsa(BolaFuego1 bola1)

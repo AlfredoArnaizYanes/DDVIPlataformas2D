@@ -11,7 +11,7 @@ public class Murcielago_Persigue : Estado<Murcielago_Controller>
 
     public override void OnEnterState(Murcielago_Controller Controller)
     {
-        Debug.Log("Persigue_Enter");
+        //Debug.Log("Persigue_Enter");
         base.OnEnterState(Controller);
         destino = FindObjectOfType<Player>().transform;
         anim = GetComponent<Animator>();
@@ -22,7 +22,7 @@ public class Murcielago_Persigue : Estado<Murcielago_Controller>
     public override void OnUpdateState()
     {
         
-        Debug.Log("Persigue_Update");
+        //Debug.Log("Persigue_Update");
         transform.position = Vector3.MoveTowards(transform.position, destino.position, velocidadPersigue * Time.deltaTime);
         if (Vector3.Distance(transform.position, destino.position) <= distanciaPasoAtaque)
         {
@@ -33,7 +33,7 @@ public class Murcielago_Persigue : Estado<Murcielago_Controller>
 
     public override void OnExitState()
     {
-        Debug.Log("Persigue_Exit");
+        //Debug.Log("Persigue_Exit");
     }
 
 
@@ -42,7 +42,7 @@ public class Murcielago_Persigue : Estado<Murcielago_Controller>
     {
         if (elOtro.gameObject.CompareTag("DeteccionPlayer"))
         {
-            Debug.Log("TriggerExitPERSIGEConDeteccionPlayer");
+            //Debug.Log("TriggerExitPERSIGEConDeteccionPlayer");
             Controller.CambiaEstado(Controller.M_Patrulla);
         }
     }

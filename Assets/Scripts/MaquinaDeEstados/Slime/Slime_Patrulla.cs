@@ -15,7 +15,7 @@ public class Slime_Patrulla : Estado<Slime_Controller>
     private List<Vector3> listadoPuntos = new List<Vector3>();
     public override void OnEnterState(Slime_Controller Controller)
     {
-        Debug.Log("Patrulla_Enter");
+        //Debug.Log("Patrulla_Enter");
         base.OnEnterState(Controller);
         foreach (Transform t in rutaPatrulla)
         {
@@ -28,7 +28,7 @@ public class Slime_Patrulla : Estado<Slime_Controller>
 
     public override void OnUpdateState()
     {
-        Debug.Log("Patrulla_Update");
+        //Debug.Log("Patrulla_Update");
         EnfocarDestino();
         transform.position = Vector3.MoveTowards(transform.position, destinoActual, velocidadPatrulla * Time.deltaTime);
         if (transform.position == destinoActual)
@@ -45,7 +45,7 @@ public class Slime_Patrulla : Estado<Slime_Controller>
             indiceActual = 0;
         }
         destinoActual = listadoPuntos[indiceActual];
-        //EnfocarDestino();
+        
     }
 
     private void EnfocarDestino()
@@ -62,7 +62,7 @@ public class Slime_Patrulla : Estado<Slime_Controller>
 
     public override void OnExitState()
     {
-        Debug.Log("Patrulla_Exit");
+        //Debug.Log("Patrulla_Exit");
         listadoPuntos.Clear();
         indiceActual = 0;
     }
@@ -72,9 +72,9 @@ public class Slime_Patrulla : Estado<Slime_Controller>
         if (elOtro.gameObject.CompareTag("DeteccionPlayer"))
         {
 
-            Debug.Log("TriggerEnterPATRULLAConDeteccionPlayer");
+            //Debug.Log("TriggerEnterPATRULLAConDeteccionPlayer");
             Controller.CambiaEstado(Controller.S_Persigue);
-            //Animator anim = elOtro.gameObject.GetComponent<Animator>();
+            
 
         }
 

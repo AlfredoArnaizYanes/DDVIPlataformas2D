@@ -14,14 +14,7 @@ public class PlataformaVerticalNivel2 : Plataforma
     void Start()
     {
         myPlayer = FindAnyObjectByType<Player>();
-        if (myPlayer == null)
-        {
-            Debug.Log("No Encuentro al player");
-        }
-        else
-        {
-            Debug.Log("SiEncuentroPlayer");
-        }
+        
     }
 
     // Update is called once per frame
@@ -29,7 +22,7 @@ public class PlataformaVerticalNivel2 : Plataforma
     {
         if (myPlayer.PisePlataformaNivel2 == true)
         {
-            Debug.Log("LaPlataformaSeMueve");
+            
             Moverse();
             DelimitadorMovimiento();
         }

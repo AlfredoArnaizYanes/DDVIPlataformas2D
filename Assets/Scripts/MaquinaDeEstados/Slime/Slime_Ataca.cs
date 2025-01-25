@@ -21,14 +21,11 @@ public class Slime_Ataca : Estado<Slime_Controller>
 
     public override void OnEnterState(Slime_Controller m_Controller)
     {
-        Debug.Log("AtacarSlime_Enter");
+        //Debug.Log("AtacarSlime_Enter");
         base.OnEnterState(m_Controller);
         timer = tiempoEntreAtaques;
 
         myPlayer = FindObjectOfType<Player>();
-
-        
-        //objetivoAtaque = FindObjectOfType<Player>().transform;
         objetivoAtaque = myPlayer.transform;
         posicionInicial = this.gameObject.transform.position;
         ataqueFinalizado = false;
@@ -40,7 +37,7 @@ public class Slime_Ataca : Estado<Slime_Controller>
 
     public override void OnUpdateState()
     {
-        Debug.Log("AtacarSlime_Update");
+        //Debug.Log("AtacarSlime_Update");
 
         timer += Time.deltaTime;
 
@@ -76,7 +73,7 @@ public class Slime_Ataca : Estado<Slime_Controller>
     }
     public override void OnExitState()
     {
-        Debug.Log("AtacarSlime_Exit");
+        //Debug.Log("AtacarSlime_Exit");
     }
 
     
@@ -86,10 +83,9 @@ public class Slime_Ataca : Estado<Slime_Controller>
 
         if (elOtro.gameObject.CompareTag("PlayerHitBox"))
         {
-            Debug.Log("TriggerEnterATAQUE ConPlayerHitBox");
+            //Debug.Log("TriggerEnterATAQUE ConPlayerHitBox");
             myPlayer.sonidoDanho();
             myPlayer.Vida -= danhoCausado;
-            //elOtro.gameObject.GetComponent<Player>().Vida -= danhoCausado;
             ataqueFinalizado = true;
 
         }

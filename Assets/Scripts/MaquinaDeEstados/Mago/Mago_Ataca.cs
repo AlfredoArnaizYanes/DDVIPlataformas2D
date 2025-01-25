@@ -133,11 +133,6 @@ public class Mago_Ataca : Estado<Mago_Controller>
         {
             bolasFuegoPool2.Get();
         }
-
-
-
-        //Instantiate(bolaFuegoPrefab, puntoSpawn.position, transform.rotation);
-        Debug.Log("Lanzo");
     }
 
     public override void OnUpdateState()

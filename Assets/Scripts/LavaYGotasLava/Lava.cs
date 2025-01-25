@@ -47,12 +47,10 @@ public class Lava : Enemigo
         
         while (true)
         {
-            //componenteAudio.PlayOneShot(meGolpean);
             jugador.sonidoDanho();
             jugador.Vida -= danhoCausado;
             
-            yield return new WaitForSeconds(1);
-            
+            yield return new WaitForSeconds(1);            
         }
     }
 

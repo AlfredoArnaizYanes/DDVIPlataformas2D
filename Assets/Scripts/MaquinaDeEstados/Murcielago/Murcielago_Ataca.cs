@@ -24,10 +24,8 @@ public class Murcielago_Ataca : Estado<Murcielago_Controller>
         base.OnEnterState(m_Controller);
         timer = tiempoEntreAtaques;
 
-        //componenteAudio = GetComponent<AudioSource>();
-
         myPlayer = FindObjectOfType<Player>();
-        //objetivoAtaque = FindObjectOfType<Player>().transform;
+      
         objetivoAtaque = myPlayer.transform;
         posicionInicial = this.gameObject.transform.position;
         ataqueFinalizado = false;
@@ -37,7 +35,7 @@ public class Murcielago_Ataca : Estado<Murcielago_Controller>
 
     public override void OnUpdateState()
     {
-        Debug.Log("Atacar_Update");
+        //Debug.Log("Atacar_Update");
         
         timer += Time.deltaTime;
 
@@ -73,7 +71,7 @@ public class Murcielago_Ataca : Estado<Murcielago_Controller>
     }
     public override void OnExitState()
     {
-        Debug.Log("Atacar_Exit");
+        //Debug.Log("Atacar_Exit");
     }
 
     private void OnTriggerEnter2D(Collider2D elOtro)
@@ -81,13 +79,13 @@ public class Murcielago_Ataca : Estado<Murcielago_Controller>
 
         if (elOtro.gameObject.CompareTag("PlayerHitBox"))
         {
-            Debug.Log("TriggerEnterATAQUE ConPlayerHitBox");
+            //Debug.Log("TriggerEnterATAQUE ConPlayerHitBox");
             if(myPlayer != null)
             {
                 myPlayer.sonidoDanho();
-                //componenteAudio.PlayOneShot(meGolpean);
+               
                 myPlayer.Vida -= danhoCausado;
-                //elOtro.gameObject.GetComponent<Player>().Vida -= danhoCausado;
+             
                 ataqueFinalizado = true;
             }
             

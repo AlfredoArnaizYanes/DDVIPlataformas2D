@@ -14,7 +14,7 @@ public class Murcielago_Patrulla : Estado<Murcielago_Controller>
     private List<Vector3> listadoPuntos = new List<Vector3>();
     public override void OnEnterState(Murcielago_Controller Controller)
     {
-        Debug.Log("Patrulla_Enter");
+        //Debug.Log("Patrulla_Enter");
         base.OnEnterState(Controller);
         anim = GetComponent<Animator>();
         anim.SetBool("perseguir", false);
@@ -27,7 +27,7 @@ public class Murcielago_Patrulla : Estado<Murcielago_Controller>
 
     public override void OnUpdateState()
     {
-        Debug.Log("Patrulla_Update");
+        //Debug.Log("Patrulla_Update");
         transform.position = Vector3.MoveTowards(transform.position, destinoActual, velocidadPatrulla * Time.deltaTime);
         if (transform.position == destinoActual)
         {
@@ -60,7 +60,7 @@ public class Murcielago_Patrulla : Estado<Murcielago_Controller>
 
     public override void OnExitState()
     {
-        Debug.Log("Patrulla_Exit");
+        //Debug.Log("Patrulla_Exit");
         listadoPuntos.Clear();
         indiceActual = 0;
     }
@@ -72,7 +72,7 @@ public class Murcielago_Patrulla : Estado<Murcielago_Controller>
 
             Debug.Log("TriggerEnterPATRULLAConDeteccionPlayer");
             Controller.CambiaEstado(Controller.M_Persigue);
-            //Animator anim = elOtro.gameObject.GetComponent<Animator>();
+        
 
         }
         

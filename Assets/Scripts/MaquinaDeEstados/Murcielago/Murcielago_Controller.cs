@@ -55,8 +55,7 @@ public class Murcielago_Controller : Enemigo
         if (estadoActual == M_Persigue)
         {
             Debug.Log("Empiezo a perseguir");
-            //anim.SetTrigger("atacar");
-            //Animator anim = elOtro.gameObject.GetComponent<Animator>();
+           
         }
     }
 
@@ -69,7 +68,7 @@ public class Murcielago_Controller : Enemigo
         {
             Player myPlayer = elOtro.gameObject.GetComponent<Player>();
             myPlayer.sonidoDanho();
-            myPlayer.Vida -= danhoCausado;
+            
         }
     }
 

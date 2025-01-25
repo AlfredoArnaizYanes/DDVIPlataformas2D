@@ -3,35 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GestorEscenas : MonoBehaviour
+public class LlegueFinal : MonoBehaviour
 {
     [SerializeField] private float duracionTransicion;
     private Animator animTransicion;
+    private Player myPlayer;
 
-    // Start is called before the first frame update
     void Start()
     {
-        animTransicion = GetComponentInChildren<Animator>();
+        animTransicion = GetComponent<Animator>();
+        myPlayer = FindAnyObjectByType<Player>();
+        myPlayer.CambioNivel = true;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (myPlayer.LlegueFinal)
+        {
+            StartCoroutine(CargaEscena(6));
+        }
     }
-
-    public void CargaProximaEscena() 
-    {
-        int proximaEscena = SceneManager.GetActiveScene().buildIndex + 1;
-        StartCoroutine(CargaEscena(proximaEscena));
-    }
-
-    IEnumerator CargaEscena(int indice) 
+    IEnumerator CargaEscena(int indice)
     {
         animTransicion.SetTrigger("Transitar");
         yield return new WaitForSeconds(duracionTransicion);
         SceneManager.LoadScene(indice);
-
     }
 }
-

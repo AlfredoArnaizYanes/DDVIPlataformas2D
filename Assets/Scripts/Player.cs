@@ -43,7 +43,7 @@ public class Player : Personaje
     private bool pisePlataformaNivel2 = false;
     private bool llegueFinal = false;
 
-    public bool CambioNivel { get => cambioNivel; }
+    public bool CambioNivel { get => cambioNivel; set => cambioNivel = value; }
     public bool PisePlataformaNivel2 { get => pisePlataformaNivel2; set => pisePlataformaNivel2 = value; }
     public bool LlegueFinal { get => llegueFinal; }
 
@@ -66,14 +66,17 @@ public class Player : Personaje
 
         LanzarAtaque();
 
-        DanhoCaida();
+        if (cambioNivel ==false || pisePlataformaNivel2 == true)
+        {
+            
+            DanhoCaida();
+        }
+        
 
         EstoyMuerto();
 
         ActualizarBarraVida();        
 
-        
-        //barraVidaColor.fillAmount = vida / vidaMaxima;
     }
     
     protected override void EstoyMuerto()

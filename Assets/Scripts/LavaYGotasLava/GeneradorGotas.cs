@@ -6,6 +6,9 @@ using UnityEngine.Pool;
 
 public class GeneradorGotas : MonoBehaviour
 {
+
+    //EL GENERADOR DE GOTAS DE LAVA CON SU OBJECT POOL
+
     [SerializeField] private Gota gotaPrefab;
     private ObjectPool<Gota> gotasPool;
     private Vector3 posicionSalida;
@@ -55,8 +58,5 @@ public class GeneradorGotas : MonoBehaviour
         }
     }
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Slime_Controller : Enemigo
 {
-    //[SerializeField] private AudioClip meGolpean;
+    
 
     //ESTADOS DE LA MAQUINA DE ESTADOS
 
@@ -64,7 +64,7 @@ public class Slime_Controller : Enemigo
         {
             Player myPlayer = elOtro.gameObject.GetComponent<Player>();
             myPlayer.sonidoDanho();
-            myPlayer.Vida -= danhoCausado;
+            
         }
     }
 }

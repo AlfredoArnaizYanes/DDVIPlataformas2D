@@ -91,7 +91,6 @@ GameObject:
   - component: {fileID: 1384649936627927871}
   - component: {fileID: 2246122671696141798}
   - component: {fileID: 4263816334756480644}
-  - component: {fileID: 7359084171714269296}
   - component: {fileID: 7652729536484507768}
   - component: {fileID: -8997346783537880287}
   - component: {fileID: 7296802113770145421}
@@ -231,24 +230,6 @@ MonoBehaviour:
   tiempoEntreAtaques: 2
   velocidadAtaque: 5
   danhoCausado: 10
---- !u!114 &7359084171714269296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2781921609301802290}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49c9ed72cc9446544ad9afe8fa59e893, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocidadMovimiento: 3
-  danhoCausado: 10
-  vida: 40
-  puntosPatrulla:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!95 &7652729536484507768
 Animator:
   serializedVersion: 5

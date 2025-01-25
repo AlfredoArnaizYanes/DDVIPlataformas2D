@@ -15,23 +15,20 @@ public class Slime_Persigue : Estado<Slime_Controller>
     public override void OnEnterState(Slime_Controller Controller)
     {
         
-        Debug.Log("Persigue_Enter");
+        //Debug.Log("Persigue_Enter");
         base.OnEnterState(Controller);
         myPlayer = FindObjectOfType<Player>();
 
         destino = myPlayer.transform;
-        //destino = FindObjectOfType<Player>().transform;
+       
         rb = GetComponent<Rigidbody2D>();
-        if(rb != null)
-        {
-            Debug.Log("Lo tengo");
-        }
+        
 
     }
 
     public override void OnUpdateState()
     {
-        Debug.Log("Persigue_Update");
+        //Debug.Log("Persigue_Update");
         if (myPlayer != null)
         {
             EnfocarDestino();
