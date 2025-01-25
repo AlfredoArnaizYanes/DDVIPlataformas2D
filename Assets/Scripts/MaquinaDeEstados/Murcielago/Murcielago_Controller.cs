@@ -60,5 +60,17 @@ public class Murcielago_Controller : Enemigo
         }
     }
 
+    //EN MUY ESCASAS OCASIONES ATACAMOS CON TANTA RAPIDEZ QUE A NUESTRO MURCIELAGO NO LE DA TIEMPO DE PASAR AL ESTADO DE ATAQUE, QUE
+    //ES DONDE GESTIONABA LA COLISIÓN CON EL PLAYER, Y ME DABA ALGÚN PROBLEMA DE Null Reference QUE SE HA SOLUCIONADO GESTIONANDO TAMBIÉN
+    //LA COLISION DESDE EL CONTROLLER
+    private void OnTriggerEnter2D(Collider2D elOtro)
+    {
+        if (elOtro.gameObject.CompareTag("PlayerHitBox"))
+        {
+            Player myPlayer = elOtro.gameObject.GetComponent<Player>();
+            myPlayer.sonidoDanho();
+            myPlayer.Vida -= danhoCausado;
+        }
+    }
 
 }

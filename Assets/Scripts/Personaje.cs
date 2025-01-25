@@ -24,7 +24,7 @@ public class Personaje : MonoBehaviour
 
     
 
-    protected void EstoyMuerto()
+    protected virtual void EstoyMuerto()
     {
         if (vida <= 0)
         {

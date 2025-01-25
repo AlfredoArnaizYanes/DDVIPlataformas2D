@@ -8,6 +8,9 @@ TagManager:
   - Plataforma
   - DeteccionPlayer
   - Suelo
+  - Portal
+  - Desencadenante
+  - Final
   layers:
   - Default
   - TransparentFX

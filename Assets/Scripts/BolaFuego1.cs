@@ -6,6 +6,7 @@ using UnityEngine.Pool;
 public class BolaFuego1 : Enemigo
 {
     [SerializeField] private float impulsoDisparo;
+    
     private Rigidbody2D rb;
     private float timer;
 
@@ -16,8 +17,7 @@ public class BolaFuego1 : Enemigo
     // Start is called before the first frame update
     void Start()
     {
-        //rb = GetComponent<Rigidbody2D>();
-        //rb.AddForce(transform.right * impulsoDisparo, ForceMode2D.Impulse);
+        
     }
 
     // Update is called once per frame
@@ -46,7 +46,9 @@ public class BolaFuego1 : Enemigo
     {
         if (elOtro.gameObject.CompareTag("PlayerHitBox"))
         {
+            
             Player myPlayer = elOtro.gameObject.GetComponent<Player>();
+            myPlayer.sonidoDanho();
             myPlayer.Vida -= danhoCausado;
             Destroy(this.gameObject);
         }

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Mago_Controller : Enemigo
 {
+
+   
+
     //ESTADOS DE LA MAQUINA DE ESTADOS
 
     private Mago_Patrulla w_Patrulla;
@@ -19,6 +22,7 @@ public class Mago_Controller : Enemigo
     // Start is called before the first frame update
     void Start()
     {
+       
         w_Patrulla = GetComponent<Mago_Patrulla>();
         w_Ataca = GetComponent<Mago_Ataca>();
         w_Persigue = GetComponent<Mago_Persigue>();
@@ -53,6 +57,8 @@ public class Mago_Controller : Enemigo
         if (elOtro.gameObject.CompareTag("PlayerHitBox"))
         {
             Player myPlayer = elOtro.gameObject.GetComponent<Player>();
+            myPlayer.sonidoDanho();
+          
             myPlayer.Vida -= danhoCausado;
         }
     }

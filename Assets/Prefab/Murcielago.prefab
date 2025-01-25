@@ -152,6 +152,7 @@ MonoBehaviour:
   tiempoEntreAtaques: 2
   velocidadAtaque: 8
   danhoCausado: 10
+  meGolpean: {fileID: 8300000, guid: 91de9c66cd1cbf64e906d01bf913fab6, type: 3}
 --- !u!70 &1696421172457110151
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

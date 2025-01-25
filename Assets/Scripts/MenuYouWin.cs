@@ -15,7 +15,7 @@ public class MenuYouWin : MonoBehaviour
     }
     public void credits()
     {
-        //StartCoroutine(CargaEscena(3));
+        StartCoroutine(CargaEscena(7));
     }
     public void exit()
     {

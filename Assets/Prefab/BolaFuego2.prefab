@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3984734876659453392}
   - component: {fileID: 6517389911194342230}
   - component: {fileID: 6984378534219679532}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BolaFuego2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,6 +103,7 @@ MonoBehaviour:
   danhoCausado: 10
   vida: 10
   velocidadBF: 6
+  meGolpean: {fileID: 8300000, guid: 91de9c66cd1cbf64e906d01bf913fab6, type: 3}
 --- !u!58 &6517389911194342230
 CircleCollider2D:
   m_ObjectHideFlags: 0

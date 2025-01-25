@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using UnityEngine.Video;
+using System.Runtime.CompilerServices;
 
 public class Player : Personaje
 {
@@ -26,11 +29,23 @@ public class Player : Personaje
     [SerializeField] private Image barraVida;
     [SerializeField] private Image barraVidaColor;
 
+    [Header("Efectos de Sonido")]
+    [SerializeField] private AudioClip golpeo;
+    [SerializeField] private AudioClip meGolpean;
+
+    private AudioSource componenteAudio;
     private Rigidbody2D rb;
     private float inputH;
     private Animator anim;
     private float velocidadAntesSuelo;
     private float vidaMaxima;
+    private bool cambioNivel = false;
+    private bool pisePlataformaNivel2 = false;
+    private bool llegueFinal = false;
+
+    public bool CambioNivel { get => cambioNivel; }
+    public bool PisePlataformaNivel2 { get => pisePlataformaNivel2; set => pisePlataformaNivel2 = value; }
+    public bool LlegueFinal { get => llegueFinal; }
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +54,7 @@ public class Player : Personaje
         anim = GetComponent<Animator>();
         vidaMaxima = vida;
         barraVida.gameObject.SetActive(true);
-        Debug.Log("VidaMaxima es:" + vidaMaxima);
+        componenteAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -61,6 +76,15 @@ public class Player : Personaje
         //barraVidaColor.fillAmount = vida / vidaMaxima;
     }
     
+    protected override void EstoyMuerto()
+    {
+        //base.EstoyMuerto();
+        if (vida <= 0)
+        {
+            SceneManager.LoadScene(5);
+
+        }
+    }
     private void ActualizarBarraVida()
     {
         barraVidaColor.fillAmount = vida / vidaMaxima;
@@ -77,6 +101,7 @@ public class Player : Personaje
         {
             if (velocidadAntesSuelo < velocidadMaxCaida)
             {
+                componenteAudio.PlayOneShot(meGolpean);
                 vida -= danhoPorCaida;
             }
             velocidadAntesSuelo = 0;
@@ -98,11 +123,20 @@ public class Player : Personaje
         {
             transform.parent = elOtro.gameObject.transform;
         }
+        else if (elOtro.gameObject.CompareTag("Desencadenante"))
+        {
+            transform.parent = elOtro.gameObject.transform;
+            pisePlataformaNivel2 = true;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D elOtro)
     {
-        transform.SetParent(null);
+        if(vida > 0)
+        {
+            transform.SetParent(null);
+        }
+        
     }
     //FIN de Me pego a las plataformas cuando estoy sobre ellas
 
@@ -125,6 +159,7 @@ public class Player : Personaje
             if (myEnemigo != null)
             {
                 myEnemigo.Vida -= danhoCausado;
+                componenteAudio.PlayOneShot(golpeo);
             }
             
         }
@@ -166,5 +201,22 @@ public class Player : Personaje
         }
     }
 
-}
+    private void OnTriggerEnter2D(Collider2D elOtro)
+    {
+        if (elOtro.gameObject.CompareTag("Portal"))
+        {
+            cambioNivel = true;
+        }
+        else if(elOtro.gameObject.CompareTag("Final"))
+        {
+            llegueFinal = true;
+        }
+        
+    }
+
+    public void sonidoDanho()
+    {
+        componenteAudio.PlayOneShot(meGolpean);
+    }
+}   
 

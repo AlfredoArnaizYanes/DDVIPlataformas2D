@@ -104,6 +104,7 @@ MonoBehaviour:
   danhoCausado: 10
   vida: 10
   impulsoDisparo: 7
+  meGolpean: {fileID: 8300000, guid: 91de9c66cd1cbf64e906d01bf913fab6, type: 3}
 --- !u!50 &4439277203323386282
 Rigidbody2D:
   serializedVersion: 4

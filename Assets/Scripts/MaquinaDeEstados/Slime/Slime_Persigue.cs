@@ -10,12 +10,17 @@ public class Slime_Persigue : Estado<Slime_Controller>
     [SerializeField] float limiteIzquierdo;
     [SerializeField] float limiteDerecho;
     private Rigidbody2D rb;
+    private Player myPlayer;
 
     public override void OnEnterState(Slime_Controller Controller)
     {
+        
         Debug.Log("Persigue_Enter");
         base.OnEnterState(Controller);
-        destino = FindObjectOfType<Player>().transform;
+        myPlayer = FindObjectOfType<Player>();
+
+        destino = myPlayer.transform;
+        //destino = FindObjectOfType<Player>().transform;
         rb = GetComponent<Rigidbody2D>();
         if(rb != null)
         {
@@ -27,14 +32,16 @@ public class Slime_Persigue : Estado<Slime_Controller>
     public override void OnUpdateState()
     {
         Debug.Log("Persigue_Update");
-        EnfocarDestino();
-        transform.position = Vector3.MoveTowards(transform.position, new Vector3(destino.position.x,transform.position.y,destino.position.z), velocidadPersigue * Time.deltaTime);
-        if (Vector3.Distance(transform.position, destino.position) <= distanciaPasoAtaque)
+        if (myPlayer != null)
         {
-            Controller.CambiaEstado(Controller.S_Ataca);
+            EnfocarDestino();
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(destino.position.x, transform.position.y, destino.position.z), velocidadPersigue * Time.deltaTime);
+            if (Vector3.Distance(transform.position, destino.position) <= distanciaPasoAtaque)
+            {
+                Controller.CambiaEstado(Controller.S_Ataca);
+            }
+            DelimitadorMovimiento();
         }
-        DelimitadorMovimiento();
-
     }
 
     public override void OnExitState()
@@ -68,6 +75,7 @@ public class Slime_Persigue : Estado<Slime_Controller>
         if (elOtro.gameObject.CompareTag("DeteccionPlayer"))
         {
             Debug.Log("TriggerExitPERSIGEConDeteccionPlayer");
+            
             Controller.CambiaEstado(Controller.S_Patrulla);
         }
     }

@@ -9,11 +9,14 @@ public class Murcielago_Ataca : Estado<Murcielago_Controller>
     [SerializeField] float velocidadAtaque;
     [SerializeField] float danhoCausado;
 
+    
+
     private float timer;
     private Transform objetivoAtaque;
     private Vector3 posicionInicial;
     private bool ataqueRetirada;
     private bool ataqueFinalizado;
+    private Player myPlayer;
 
     public override void OnEnterState(Murcielago_Controller m_Controller)
     {
@@ -21,7 +24,11 @@ public class Murcielago_Ataca : Estado<Murcielago_Controller>
         base.OnEnterState(m_Controller);
         timer = tiempoEntreAtaques;
 
-        objetivoAtaque = FindObjectOfType<Player>().transform;
+        //componenteAudio = GetComponent<AudioSource>();
+
+        myPlayer = FindObjectOfType<Player>();
+        //objetivoAtaque = FindObjectOfType<Player>().transform;
+        objetivoAtaque = myPlayer.transform;
         posicionInicial = this.gameObject.transform.position;
         ataqueFinalizado = false;
 
@@ -75,8 +82,15 @@ public class Murcielago_Ataca : Estado<Murcielago_Controller>
         if (elOtro.gameObject.CompareTag("PlayerHitBox"))
         {
             Debug.Log("TriggerEnterATAQUE ConPlayerHitBox");
-            elOtro.gameObject.GetComponent<Player>().Vida -= danhoCausado;
-            ataqueFinalizado = true;
+            if(myPlayer != null)
+            {
+                myPlayer.sonidoDanho();
+                //componenteAudio.PlayOneShot(meGolpean);
+                myPlayer.Vida -= danhoCausado;
+                //elOtro.gameObject.GetComponent<Player>().Vida -= danhoCausado;
+                ataqueFinalizado = true;
+            }
+            
             
         }
 

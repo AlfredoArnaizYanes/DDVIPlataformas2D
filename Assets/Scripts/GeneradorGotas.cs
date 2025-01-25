@@ -26,6 +26,7 @@ public class GeneradorGotas : MonoBehaviour
     {
         gota.transform.position = posicionSalida;
         gota.gameObject.SetActive(true);
+        
     }
 
     private void ReleaseGota(Gota gota)

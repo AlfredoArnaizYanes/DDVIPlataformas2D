@@ -8,15 +8,23 @@ public class Lava : Enemigo
 
     private float timer;
     private bool ardiendo = false;
+    private Player myPlayer;
+    
+
     void Start()
     {
-
+        myPlayer = FindAnyObjectByType<Player>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        ascenso();
+        if (myPlayer.PisePlataformaNivel2 == true)
+        {
+            Ascenso();
+        }
+
     }
 
     //DAÑO POR SEGUNDO DE LA LAVA
@@ -26,7 +34,7 @@ public class Lava : Enemigo
     {
         if (elOtro.gameObject.CompareTag("PlayerHitBox") && !ardiendo)
         {
-            Debug.Log("Entre");
+           
             Player myPlayer = elOtro.gameObject.GetComponent<Player>();
             ardiendo = true;
             StartCoroutine("meQuemo", myPlayer);
@@ -36,11 +44,15 @@ public class Lava : Enemigo
 
     IEnumerator meQuemo(Player jugador)
     {
-        Debug.Log("Mellamaron");
+        
         while (true)
         {
+            //componenteAudio.PlayOneShot(meGolpean);
+            jugador.sonidoDanho();
             jugador.Vida -= danhoCausado;
+            
             yield return new WaitForSeconds(1);
+            
         }
     }
 
@@ -56,7 +68,7 @@ public class Lava : Enemigo
 
     //FIN DAÑO POR SEGUNDO DE LA LAVA
 
-    private void ascenso()
+    private void Ascenso()
     {
         transform.Translate(Vector3.up * velocidadMovimiento * Time.deltaTime);
     }
