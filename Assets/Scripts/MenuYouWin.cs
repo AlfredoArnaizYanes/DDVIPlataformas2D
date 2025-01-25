@@ -5,25 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class MenuYouWin : MonoBehaviour
 {
-    private Canvas myCanvas;
+    [SerializeField] private float duracionTransicion;
+    private Animator animTransicion;
+
+    
     public void Start()
     {
-        myCanvas = GetComponent<Canvas>();
-        StartCoroutine(cambioOrden());
+        animTransicion = GetComponentInChildren<Animator>();
     }
     public void credits()
     {
-        SceneManager.LoadScene("Credits");
+        //StartCoroutine(CargaEscena(3));
     }
     public void exit()
     {
         Application.Quit();
     }
 
-    IEnumerator cambioOrden()
+    IEnumerator CargaEscena(int indice)
     {
-        yield return new WaitForSeconds(1.5f);
-        myCanvas.sortingOrder = 5;
-
+        animTransicion.SetTrigger("Transitar");
+        yield return new WaitForSeconds(duracionTransicion);
+        SceneManager.LoadScene(indice);
     }
 }

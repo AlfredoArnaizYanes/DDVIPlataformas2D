@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/NivelJuego.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
+    path: Assets/Scenes/NivelJuego2.unity
+    guid: 7b9d67fc7f8b7804d83e82ae1b7bff6e
+  - enabled: 1
     path: Assets/Scenes/MenuGameOver.unity
     guid: 0a19ac70c437b6740b0e8cc135c1093d
   - enabled: 1

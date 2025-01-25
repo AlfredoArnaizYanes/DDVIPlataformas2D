@@ -7,6 +7,7 @@ public class Lava : Enemigo
     // Start is called before the first frame update
 
     private float timer;
+    private bool ardiendo = false;
     void Start()
     {
 
@@ -15,23 +16,27 @@ public class Lava : Enemigo
     // Update is called once per frame
     void Update()
     {
-        
+        ascenso();
     }
 
     //DAÑO POR SEGUNDO DE LA LAVA
-    //La lava causa un daño determinado al caer y el mismo daño por segundo si permaneces en ella
-    private void OnCollisionEnter2D(Collision2D elOtro)
+   
+
+    private void OnTriggerEnter2D(Collider2D elOtro)
     {
-        if (elOtro.gameObject.CompareTag("PlayerHitBox"))
+        if (elOtro.gameObject.CompareTag("PlayerHitBox") && !ardiendo)
         {
             Debug.Log("Entre");
             Player myPlayer = elOtro.gameObject.GetComponent<Player>();
-            StartCoroutine("meQuemo",myPlayer);
+            ardiendo = true;
+            StartCoroutine("meQuemo", myPlayer);
+
         }
     }
 
     IEnumerator meQuemo(Player jugador)
     {
+        Debug.Log("Mellamaron");
         while (true)
         {
             jugador.Vida -= danhoCausado;
@@ -40,13 +45,19 @@ public class Lava : Enemigo
     }
 
 
-
-    private void OnCollisionExit2D(Collision2D elOtro)
+    private void OnTriggerExit2D(Collider2D elOtro)
     {
         if (elOtro.gameObject.CompareTag("PlayerHitBox"))
         {
-        StopCoroutine("meQuemo");
+            StopCoroutine("meQuemo");
+            ardiendo=false;
         }
     }
+
     //FIN DAÑO POR SEGUNDO DE LA LAVA
+
+    private void ascenso()
+    {
+        transform.Translate(Vector3.up * velocidadMovimiento * Time.deltaTime);
+    }
 }

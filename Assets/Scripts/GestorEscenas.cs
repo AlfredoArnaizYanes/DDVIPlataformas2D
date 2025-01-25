@@ -3,35 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MenuInicial : MonoBehaviour
+public class GestorEscenas : MonoBehaviour
 {
     [SerializeField] private float duracionTransicion;
     private Animator animTransicion;
-    //private Canvas myCanvas;
 
+    // Start is called before the first frame update
     void Start()
     {
-        animTransicion = GetComponent<Animator>();
+        animTransicion = GetComponentInChildren<Animator>();
     }
-    
-    public void play()
+
+    // Update is called once per frame
+    void Update()
     {
-        StartCoroutine(CargaEscena(1));
         
     }
-    public void exit()
+
+    public void CargaProximaEscena() 
     {
-        Application.Quit();
+        int proximaEscena = SceneManager.GetActiveScene().buildIndex + 1;
+        StartCoroutine(CargaEscena(proximaEscena));
     }
 
-    
-
-    IEnumerator CargaEscena(int indice)
+    IEnumerator CargaEscena(int indice) 
     {
         animTransicion.SetTrigger("Transitar");
-        Debug.Log("Ahora");
         yield return new WaitForSeconds(duracionTransicion);
-        Debug.Log("Despues");
         SceneManager.LoadScene(indice);
+
     }
 }
+

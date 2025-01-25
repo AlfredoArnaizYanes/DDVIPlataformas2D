@@ -45,12 +45,16 @@ public class Mago_Controller : Enemigo
         }
         estadoActual = nuevoEstado;
         estadoActual.OnEnterState(this);
-        //if (estadoActual == W_Persigue)
-        //{
-        //    Debug.Log("Empiezo a perseguir");
-        //    //anim.SetTrigger("atacar");
-        //    //Animator anim = elOtro.gameObject.GetComponent<Animator>();
-        //}
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D elOtro)
+    {
+        if (elOtro.gameObject.CompareTag("PlayerHitBox"))
+        {
+            Player myPlayer = elOtro.gameObject.GetComponent<Player>();
+            myPlayer.Vida -= danhoCausado;
+        }
     }
 
 

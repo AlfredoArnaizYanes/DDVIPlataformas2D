@@ -148,7 +148,10 @@ MonoBehaviour:
   bolaFuegoPrefab2: {fileID: 3984734876659453392, guid: a697a33337152e6438199ab2b2f8c002, type: 3}
   puntoSpawn: {fileID: 7374526966117548201}
   tiempoAtaques: 4
+  tiempoTeletransporte: 4
   probBolaTipo1: 0.5
+  puntosTeletransporte: {fileID: 0}
+  numeroPuntosTeletransporte: 0
 --- !u!50 &-7286240595519362609
 Rigidbody2D:
   serializedVersion: 4

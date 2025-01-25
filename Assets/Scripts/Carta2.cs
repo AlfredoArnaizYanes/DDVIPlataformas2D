@@ -5,8 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class Carta2 : MonoBehaviour
 {
+    [SerializeField] private float duracionTransicion;
+    private Animator animTransicion;
+
+    void Start()
+    {
+        animTransicion = GetComponentInChildren<Animator>();
+    }
     public void Play()
     {
-        SceneManager.LoadScene("NivelJuego");
+        StartCoroutine(CargaEscena(3));
+    }
+
+    IEnumerator CargaEscena(int indice)
+    {
+        animTransicion.SetTrigger("Transitar");
+        yield return new WaitForSeconds(duracionTransicion);
+        SceneManager.LoadScene(indice);
     }
 }
